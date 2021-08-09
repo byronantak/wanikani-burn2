@@ -11,13 +11,11 @@
 // @include     https://www.wanikani.com/
 // @include     http://www.wanikani.com/dashboard
 // @include     https://www.wanikani.com/dashboard
-// @require     https://greasyfork.org/scripts/19781-wanakana/code/WanaKana.js?version=126349
 // @grant       none
+// @require     https://greasyfork.org/scripts/19781-wanakana/code/WanaKana.js?version=126349
 // @require     https://code.jquery.com/jquery-3.6.0.min.js
-// @require     https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/system.min.js
 // ==/UserScript==
 */
-
 
 /// <reference path="constants/storage.constants.ts" />
 /// <reference path="utility/storage.ts" />

@@ -1,3 +1,4 @@
+/// <reference path="../api/wani-kani-api-service.ts" />
 
 namespace Services {
     const questionTypes = {
@@ -6,26 +7,20 @@ namespace Services {
     }
 
     export class QuestionAskingService {
-        waniKaniApiService = null;
-        apiKey = null;
+        public waniKaniApiService: Services.WaniKaniApiService = null;
+        private apiKey: string = null;
 
-        constructor(apiKey) {
+        constructor(apiKey: string) {
             this.apiKey = apiKey;
             this.waniKaniApiService = new Services.WaniKaniApiService(apiKey);
         }
 
         randomizeSubject(subjectCount) {
-            return this.getRandomInt(0, subjectCount);
-        }
-
-        getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+            return Utilities.getRandomInt(0, subjectCount);
         }
 
         randomizeQuestionType() {
-            const randomInt = this.getRandomInt(0, 1);
+            const randomInt = Utilities.getRandomInt(0, 1);
             if (randomInt === 0) {
                 return questionTypes.meaning;
             }
@@ -35,7 +30,7 @@ namespace Services {
         async doSomething() {
             window.alert(`You API Key is: '${this.apiKey}'`);
             const userLevel = await this.waniKaniApiService.getUserLevel();
-            Utilities.setValue(Constants.localStorageKeys.userLevel, userLevel);
+            Utilities.setValue(Constants.localStorageKeys.userLevel, String(userLevel));
             console.log('getUserLevel()', userLevel);
             const burnFilter = Utilities.getValue(Constants.localStorageKeys.filter, Models.BurnFilter.default({ userLevel }));
             const values = await this.waniKaniApiService.getAllBurnProgressionItems(burnFilter);

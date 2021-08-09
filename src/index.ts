@@ -19,7 +19,9 @@
 */
 
 
-/// <reference path="./services/question-asking-service">
+/// <reference path="constants/storage.constants.ts" />
+/// <reference path="utility/storage.ts" />
+/// <reference path="services/question-asking-service/question-asking-service.ts" />
 (async function () {
     'use strict';
     console.log('Started Script');

@@ -1,3 +1,5 @@
+/// <reference path="./interfaces.ts" />
+
 namespace Interfaces {
     export interface ResourceResponse<T> {
         id: number;

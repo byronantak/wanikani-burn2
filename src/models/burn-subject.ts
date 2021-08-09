@@ -1,3 +1,5 @@
+/// <reference path="./models.ts" />
+
 namespace Models {
     export class BurnedSubject {
         burnedAt = null;

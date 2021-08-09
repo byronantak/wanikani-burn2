@@ -1,5 +1,7 @@
+/// <reference path="./models.ts" />
+
 namespace Models {
-    export class UserProfile {
+    export interface UserProfile {
         level: number;
     }
 }

@@ -1,3 +1,5 @@
+/// <reference path="./utilities.ts" />
+
 namespace Utilities {
     export function getValue<T>(key: string, defaultValue: T) {
         var value = localStorage.getItem(key);

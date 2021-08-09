@@ -1,3 +1,5 @@
+/// <reference path="../services.ts" />
+
 namespace Services {
     export class WaniKaniApiService {
         private apiKey: string;

@@ -27,7 +27,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 (function () {
     'use strict';
     return __awaiter(this, void 0, void 0, function* () {
-        debugger;
         var service = new Services.QuestionAskingService(Utilities.getValue(Constants.localStorageKeys.apiKey, null));
         yield service.doSomething();
     });

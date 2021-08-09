@@ -1,4 +1,5 @@
 
+/*! Need the trailling // for Tampermonkey...
 // ==UserScript==
 // @name        Wanikani Burn Reviews 2
 // @namespace   wkburnreview2
@@ -15,10 +16,13 @@
 // @require     https://code.jquery.com/jquery-3.6.0.min.js
 // @require     https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/system.min.js
 // ==/UserScript==
+*/
+
 
 /// <reference path="./services/question-asking-service">
 (async function () {
     'use strict';
+    console.log('Started Script');
     var service = new Services.QuestionAskingService(Utilities.getValue(Constants.localStorageKeys.apiKey, null));
     await service.doSomething();
 })();

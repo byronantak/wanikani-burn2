@@ -4,7 +4,7 @@
         "target": "ES2015",
         "outFile": "./generated/wanikaniburn2.js",
         "module": "System",
-        "removeComments": false
+        "removeComments": true
     },
     "include": [
         "./src/**/*",

@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "ES2015",
+        "outFile": "./generated/wanikaniburn2.js",
+        "module": "System",
+        "removeComments": false
+    },
+    "include": [
+        "./src/**/*",
+    ]
+}

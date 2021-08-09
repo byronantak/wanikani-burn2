@@ -1,0 +1,17 @@
+{
+  "name": "wanikani-burn-2",
+  "version": "0.0.1",
+  "description": "Project to generate tampermonkey script for a widget to test oneself on burned Kanji/Radicals/Vocab from WaniKani",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wanikani"
+  ],
+  "author": "Byron Antak",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  }
+}

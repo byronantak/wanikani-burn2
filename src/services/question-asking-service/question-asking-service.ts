@@ -68,7 +68,10 @@ namespace Services {
             const randomIndex = this.randomizeSubjectId(this.burnedSubjects.length);
             const randomizedBurnedSubject = this.burnedSubjects[randomIndex];
             const subject = await this.getSubjectDetails(randomizedBurnedSubject.subjectId);
-            const questionType = this.randomizeQuestionType();
+            let questionType = this.randomizeQuestionType();
+            if (randomizedBurnedSubject.subjectType === 'radical') {
+                questionType = QuestionType.Meaning;
+            }
             console.log('subjects', this.burnedSubjects);
             console.log('randomNumber', randomIndex);
             console.log('detailed random', randomizedBurnedSubject);

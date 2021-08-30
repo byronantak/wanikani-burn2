@@ -48,11 +48,12 @@ namespace Services {
             const json = await this.getBurnProgressionJson(burnFilter);
             items = this.appendBurnedSubjects(items, json);
             let next_url = json.pages.next_url;
-            do {
+            while (next_url != null) {
                 const newResponse = await this.makeNextPageRequest(next_url);
                 items = this.appendBurnedSubjects(items, newResponse);
                 next_url = newResponse.pages.next_url;
-            } while (next_url != null);
+            }
+
             return items;
         }
 

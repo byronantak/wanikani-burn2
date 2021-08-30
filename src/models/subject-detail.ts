@@ -54,8 +54,8 @@ namespace Models {
             this.meaningMnemonic = meaning_mnemonic;
             this.readingMnemonic = reading_mnemonic;
             this.auxiliaryMeanings = auxiliary_meanings;
-            this.meanings = meanings.map(x => Meaning.fromObject(x));
-            this.readings = readings.map(x => Reading.fromObject(x));
+            this.meanings = meanings?.map(x => Meaning.fromObject(x)) ?? [];
+            this.readings = readings?.map(x => Reading.fromObject(x)) ?? [];
         }
 
         public static fromObject(id: string, obj: any) {

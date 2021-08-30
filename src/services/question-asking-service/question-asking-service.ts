@@ -1,6 +1,8 @@
 /// <reference path="../api/wani-kani-api-service.ts" />
 
 namespace Services {
+    declare var wanakana: any;
+
     enum QuestionType {
         Meaning = 'meaning',
         Reading = 'reading',
@@ -14,6 +16,13 @@ namespace Services {
 
     interface SubjectDetailLookup {
         [id: number]: Models.SubjectDetail;
+    }
+
+    function convertAnswerIfReadingQuestion(questionType: QuestionType, answer: string): string {
+        if (questionType === QuestionType.Reading) {
+            return wanakana.toHiragana(answer);
+        }
+        return answer;
     }
 
     export class QuestionAskingService {
@@ -70,9 +79,9 @@ namespace Services {
         private isAnswerCorrect(detail: Models.SubjectDetail, answer: string, questionType: QuestionType): boolean {
             switch (questionType) {
                 case QuestionType.Meaning:
-                    return detail.auxiliaryMeanings.some(x => x.meaning === answer);
+                    return detail.auxiliaryMeanings.filter(x => x.acceptedAnswer).some(x => x.meaning === answer);
                 case QuestionType.Reading:
-                    return detail.readings.some(x => x.reading === answer);
+                    return detail.readings.filter(x => x.acceptedAnswer).some(x => x.reading === answer);
             }
         }
 
@@ -108,8 +117,14 @@ namespace Services {
 
             console.log('getUserLevel()', this.userLevel);
             const question = await this.getRandomQuestion();
-            const userAnswer = window.prompt(question.questionText);
+            console.log('reading', this.subjectDetailCache[question.subjectId].readings.map(x => x.reading).join(', '));
+            console.log('meanings', this.subjectDetailCache[question.subjectId].meanings.map(x => x.meaning).join(', '));
 
+            const userAnswer = convertAnswerIfReadingQuestion(question.type, window.prompt(question.questionText));
+
+            console.group('wanakana');
+            console.log(wanakana);
+            console.groupEnd();
             await this.answerQuestion(question, userAnswer);
         }
     }

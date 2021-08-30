@@ -41,7 +41,7 @@ namespace Models {
         documentUrl = '';
         level = 0;
         meaningMnemonic = '';
-        meanings = [];
+        meanings: Meaning[] = [];
         auxiliaryMeanings: Meaning[] = [];
         readings: Reading[] = [];
         readingMnemonic = '';

@@ -24,5 +24,5 @@
     'use strict';
     console.log('Started Script');
     var service = new Services.QuestionAskingService(Utilities.getValue(Constants.localStorageKeys.apiKey, null));
-    await service.doSomething();
+    await service.init();
 })();

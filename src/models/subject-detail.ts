@@ -42,8 +42,8 @@ namespace Models {
         level = 0;
         meaningMnemonic = '';
         meanings = [];
-        auxiliaryMeanings = [];
-        readings = [];
+        auxiliaryMeanings: Meaning[] = [];
+        readings: Reading[] = [];
         readingMnemonic = '';
 
         constructor({ id, level, document_url, characters, meaning_mnemonic, reading_mnemonic, auxiliary_meanings, meanings, readings }) {

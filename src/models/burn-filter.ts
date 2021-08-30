@@ -2,8 +2,8 @@
 
 namespace Models {
     export class BurnFilter {
-        levels = [];
-        types = [];
+        levels: number[] = [];
+        types: string[] = [];
 
         constructor({ levels, types }) {
             this.levels = levels;

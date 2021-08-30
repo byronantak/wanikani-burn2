@@ -19,6 +19,10 @@ namespace Services {
     }
 
     function convertAnswerIfReadingQuestion(questionType: QuestionType, answer: string): string {
+        if (answer == null) {
+            return '';
+        }
+
         if (questionType === QuestionType.Reading) {
             return wanakana.toHiragana(answer);
         }
@@ -115,17 +119,20 @@ namespace Services {
             const burnFilter = Utilities.getValue(Constants.localStorageKeys.filter, Models.BurnFilter.default({ userLevel: this.userLevel }));
             this.burnedSubjects = await this.waniKaniApiService.getAllBurnProgressionItems(burnFilter);
 
-            console.log('getUserLevel()', this.userLevel);
-            const question = await this.getRandomQuestion();
-            console.log('reading', this.subjectDetailCache[question.subjectId].readings.map(x => x.reading).join(', '));
-            console.log('meanings', this.subjectDetailCache[question.subjectId].meanings.map(x => x.meaning).join(', '));
-
-            const userAnswer = convertAnswerIfReadingQuestion(question.type, window.prompt(question.questionText));
-
-            console.group('wanakana');
-            console.log(wanakana);
-            console.groupEnd();
-            await this.answerQuestion(question, userAnswer);
+            for (let i = 0; i < 5; i++) {
+                console.log('getUserLevel()', this.userLevel);
+                const question = await this.getRandomQuestion();
+                console.log('reading', this.subjectDetailCache[question.subjectId].readings.map(x => x.reading).join(', '));
+                console.log('meanings', this.subjectDetailCache[question.subjectId].meanings.map(x => x.meaning).join(', '));
+                const userAnswer = convertAnswerIfReadingQuestion(question.type, window.prompt(question.questionText));
+                console.group('wanakana');
+                console.log(wanakana);
+                console.groupEnd();
+                console.group('incorrect answers')
+                console.log(this.userIncorrectSubjectIds.map(id => this.subjectDetailCache[id]));
+                console.groupEnd();
+                await this.answerQuestion(question, userAnswer);
+            }
         }
     }
 }

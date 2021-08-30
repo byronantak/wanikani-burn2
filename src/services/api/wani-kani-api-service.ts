@@ -67,7 +67,7 @@ namespace Services {
             return Models.SubjectDetail.fromObject(subjectId, json.data);
         }
 
-        private buildBurnedQueryParameterString(burnFilter): string {
+        private buildBurnedQueryParameterString(burnFilter: Models.BurnFilter): string {
             if (!burnFilter) {
                 return '';
             }
@@ -76,8 +76,8 @@ namespace Services {
                 "burned": "true",
                 "started": "true",
                 "unlocked": "true",
-                "subject_types": burnFilter.types,
-                "levels": burnFilter.levels
+                "subject_types": burnFilter.types.join(','),
+                "levels": burnFilter.levels.map(x => String(x)).join(',')
             }
             return '?' + new URLSearchParams({
                 ...params
